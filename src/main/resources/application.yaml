@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: spring-ai
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+#      chat:
+#        options:
+#          model: gpt-4.1-nano
+#      temperature: 0.2
+#    chat:
+#      client:
+#        enabled: false
+
+server:
+  port: 8081
+
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: DEBUG
+
+
+
