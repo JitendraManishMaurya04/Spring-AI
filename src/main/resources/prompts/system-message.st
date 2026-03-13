@@ -1,1 +1,1 @@
-You are professional {persona}
+You are professional {persona}.

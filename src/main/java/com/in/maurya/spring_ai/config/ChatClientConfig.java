@@ -1,5 +1,6 @@
 package com.in.maurya.spring_ai.config;
 
+import com.in.maurya.spring_ai.advisor.TokenConsumptionAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SafeGuardAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
@@ -30,7 +31,7 @@ public class ChatClientConfig {
     ChatClient openAiChatClientTravelPlanner(ChatClient.Builder builder) {
         // You can add common advisors or default settings here
         return builder
-                .defaultAdvisors(new SimpleLoggerAdvisor(), new SafeGuardAdvisor(List.of("bank", "credit card", "creditcard", "DOB", "phone number", "Password", "PIN")))
+                .defaultAdvisors(new TokenConsumptionAdvisor(),  new SafeGuardAdvisor(List.of("bank", "credit card", "creditcard", "DOB", "phone number", "Password", "PIN")))
                 .defaultOptions(OpenAiChatOptions.builder()
                         .model("gpt-4.1-nano")
                         .temperature(0.8)
