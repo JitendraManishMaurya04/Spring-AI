@@ -13,6 +13,7 @@ import reactor.core.publisher.Flux;
 public class TokenConsumptionAdvisor  implements CallAdvisor, StreamAdvisor {
 
     private Logger logger = LoggerFactory.getLogger(TokenConsumptionAdvisor.class);
+
     @Override
     public ChatClientResponse adviseCall(ChatClientRequest chatClientRequest, CallAdvisorChain callAdvisorChain) {
         this.logger.info("TokenConsumptionAdvisor is Invoked");
@@ -46,7 +47,9 @@ public class TokenConsumptionAdvisor  implements CallAdvisor, StreamAdvisor {
 
     @Override
     public Flux<ChatClientResponse> adviseStream(ChatClientRequest chatClientRequest, StreamAdvisorChain streamAdvisorChain) {
-        return null;
+        this.logger.info("TokenConsumptionAdvisor is Invoked for Streaming Chat");
+        Flux<ChatClientResponse> chatClientResponseFlux = streamAdvisorChain.nextStream(chatClientRequest);
+        return chatClientResponseFlux;
     }
 
     @Override

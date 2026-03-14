@@ -2,6 +2,7 @@ spring:
   application:
     name: spring-ai
 
+##SpringAI-OpenAI props
   ai:
     openai:
       api-key: ${OPENAI_API_KEY}
@@ -12,10 +13,29 @@ spring:
 #    chat:
 #      client:
 #        enabled: false
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+
+
+##SpringAI-MySQL DB Props
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_ai?createDatabaseIfNotExist=true
+    username: root
+    password: ${MYSQL_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+
 
 server:
   port: 8081
 
+
+##Logging
 logging:
   level:
     org:
@@ -24,6 +44,8 @@ logging:
           chat:
             client:
               advisor: DEBUG
+
+
 
 
 

@@ -3,11 +3,13 @@ package com.in.maurya.spring_ai.aiService;
 import com.in.maurya.spring_ai.aiServiceInterface.PromptService;
 import com.in.maurya.spring_ai.dto.GenericResponse;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 import java.util.Map;
@@ -23,11 +25,13 @@ public class SimpleChatServiceImpl implements PromptService {
 
     private final ChatClient simpleChatClient;
     private final ChatClient travelPlannerChatClient;
+    private final ChatClient chatMemoryClient;
     private final PromptTemplateServiceImpl promptTemplateServiceImpl;
 
-    public SimpleChatServiceImpl(@Qualifier("openAiChatClient") ChatClient simplechatClient, @Qualifier("openAiChatClientTravelPlanner") ChatClient travelPlannerChatClient, PromptTemplateServiceImpl promptTemplateServiceImp, PromptTemplateServiceImpl promptTemplateServiceImpl){
+    public SimpleChatServiceImpl(@Qualifier("openAiChatClient") ChatClient simplechatClient, @Qualifier("openAiChatClientTravelPlanner") ChatClient travelPlannerChatClient, @Qualifier("openAiChatMemoryClient") ChatClient chatMemoryClient, PromptTemplateServiceImpl promptTemplateServiceImpl){
         this.simpleChatClient = simplechatClient;
         this.travelPlannerChatClient = travelPlannerChatClient;
+        this.chatMemoryClient = chatMemoryClient;
         this.promptTemplateServiceImpl = promptTemplateServiceImpl;
     }
 
@@ -83,5 +87,22 @@ public class SimpleChatServiceImpl implements PromptService {
     }
 
 
+    public Flux<String> travelPlannerStreamChat(String place, String days, String budget) {
+        Map<String,Object> usrParamMap = Map.of(   "PLACE",place,
+                "DAYS",days,
+                "BUDGET", budget);
+        return this.travelPlannerChatClient.prompt( )
+                .system(s -> s.text(systemMessage).param("persona", "travel guide"))
+                .user(u -> u.text(userMessage).params(usrParamMap))
+                .stream()
+                .content();
+    }
 
+    public String chatMemory(String prompt, String persona, String userId) {
+        return  chatMemoryClient.prompt(prompt)
+                .advisors( adv -> adv.param(ChatMemory.CONVERSATION_ID, userId))
+                .system(s -> s.param("persona", persona))
+                .call()
+                .content();
+    }
 }

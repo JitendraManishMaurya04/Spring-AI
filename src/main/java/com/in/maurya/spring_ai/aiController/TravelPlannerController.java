@@ -1,11 +1,9 @@
 package com.in.maurya.spring_ai.aiController;
 
-import com.in.maurya.spring_ai.aiService.PromptTemplateServiceImpl;
 import com.in.maurya.spring_ai.aiService.SimpleChatServiceImpl;
-import com.in.maurya.spring_ai.dto.GenericResponse;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -30,5 +28,12 @@ public class TravelPlannerController {
         var response = promptServiceImpl.travelPlannerChat(place,days,budget);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/stream-chat/place/{place}/days/{days}/budget/{budget}")
+    public ResponseEntity<Flux<String>> streamChat(@PathVariable String place, @PathVariable String days, @PathVariable String budget){
+        var response = promptServiceImpl.travelPlannerStreamChat(place,days,budget);
+        return ResponseEntity.ok(response);
+    }
+
 
 }
