@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: spring-ai-rag-app
+
+#    chat:
+#      memory:
+#        repository:
+#          jdbc:
+#            initialize-schema: always
+
+
+##SpringAI-MySQL DB Props
+  datasource:
+    url: jdbc:mariadb://localhost:3308/spring_ai?createDatabaseIfNotExist=true
+    username: root
+    password: ${MYSQL_PASSWORD}
+  ai:
+    vectorstore:
+      mariadb:
+        initialize-schema: true
+        distance-type: COSINE
+        dimensions: 1536
+
+  ##SpringAI-OpenAI props
+    openai:
+      api-key: ${OPENAI_API_KEY}
+#      chat:
+#        options:
+#          model: gpt-4.1-nano
+#      temperature: 0.2
+#    chat:
+#      client:
+#        enabled: false
+server:
+  port: 8081
+
+
+##Logging
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: DEBUG
+
+
+
+
+
