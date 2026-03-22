@@ -1,0 +1,84 @@
+{
+  "trekking_destinations": [
+    {
+      "trek_id": "KSL001",
+      "name": "Kheerganga Trek",
+      "location": {
+        "region": "Parvati Valley",
+        "state": "Himachal Pradesh",
+        "country": "India"
+      },
+      "difficulty": "Easy to Moderate",
+      "duration_days": 2,
+      "max_elevation_meters": 2960,
+      "distance_km": 12.0,
+      "best_time": "April to June, September to November",
+      "highlights": [
+        "Natural hot water springs (Parvati Kund)",
+        "Rudranag Waterfall",
+        "Camping under starlit skies",
+        "Scenic views of the Parvati River"
+      ]
+    },
+    {
+      "trek_id": "KSL002",
+      "name": "Sar Pass Trek",
+      "location": {
+        "region": "Kullu District",
+        "state": "Himachal Pradesh",
+        "country": "India"
+      },
+      "difficulty": "Moderate",
+      "duration_days": 5,
+      "max_elevation_meters": 4220,
+      "distance_km": 48.0,
+      "best_time": "May to June (for snow), September to October",
+      "highlights": [
+        "Crossing the frozen lake (Sar)",
+        "Steep snow slides near Biskeri Thatch",
+        "Views of Tosh Valley and Greater Himalayas",
+        "Traditional Grahan Village stay"
+      ]
+    },
+    {
+      "trek_id": "KSL003",
+      "name": "Pin Parvati Pass Trek",
+      "location": {
+        "region": "Trans-Himalayan Crossover",
+        "state": "Himachal Pradesh",
+        "country": "India"
+      },
+      "difficulty": "Difficult",
+      "duration_days": 11,
+      "max_elevation_meters": 5319,
+      "distance_km": 110.0,
+      "best_time": "July to September",
+      "highlights": [
+        "Transition from lush Parvati Valley to barren Spiti Valley",
+        "Mantalai Lake (source of Parvati River)",
+        "Glacial crossings and high-altitude moraines",
+        "Pin Valley National Park"
+      ]
+    },
+    {
+      "trek_id": "KSL004",
+      "name": "Malana Village Trek",
+      "location": {
+        "region": "Malana Valley",
+        "state": "Himachal Pradesh",
+        "country": "India"
+      },
+      "difficulty": "Moderate",
+      "duration_days": 1,
+      "max_elevation_meters": 2652,
+      "distance_km": 5.0,
+      "best_time": "March to June, September to November",
+      "highlights": [
+        "Oldest democracy in the world",
+        "Unique local culture and taboos",
+        "Panoramic views of Deo Tibba and Pin Parjal peaks",
+        "Steep but rewarding ascent"
+      ]
+    }
+  ]
+}

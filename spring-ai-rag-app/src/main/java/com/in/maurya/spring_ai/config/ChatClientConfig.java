@@ -72,4 +72,19 @@ public class ChatClientConfig {
                 .build();
     }
 
+
+    @Bean("openAiChatClientAdvRag")
+    ChatClient openAiChatClientAdvanceRag(ChatClient.Builder builder) {
+        return builder
+                .defaultAdvisors(new SimpleLoggerAdvisor(),  new SafeGuardAdvisor(List.of( "credit card", "creditcard", "DOB", "phone number", "Password", "PIN")))
+                //.defaultSystem("You are a friendly chat bot that answers question in the voice of a {persona}")
+                .defaultOptions(OpenAiChatOptions.builder()
+                        .model("gpt-4.1-nano")
+                        .temperature(0.3)
+                        .maxTokens(200)
+                        .build()
+                )
+                .build();
+    }
+
 }
