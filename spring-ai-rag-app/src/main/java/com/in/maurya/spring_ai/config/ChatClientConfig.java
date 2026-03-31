@@ -39,7 +39,7 @@ public class ChatClientConfig {
                 .defaultOptions(OpenAiChatOptions.builder()
                         .model("gpt-4.1-nano")
                         .temperature(0.8)
-                        .maxTokens(300)
+                        .maxTokens(2000)
                         .build()
                 )
                 .build();
