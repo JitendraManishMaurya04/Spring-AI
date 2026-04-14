@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: google-gemini-app
+
+#Gemini-APi-Key
+  ai:
+    google:
+      genai:
+        api-key: ${GOOGLE_GEMINI_API_KEY}
+
+
+server:
+  port: 8081

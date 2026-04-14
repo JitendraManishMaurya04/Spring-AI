@@ -11,12 +11,12 @@ import reactor.core.publisher.Flux;
 
 @Service
 @Data
-public class AiService {
+public class AiS@Value("classpath:/prompts/helpdesk-system.st")ervice {
 
     private final ChatClient chatClient;
     private final TicketDatabaseTool ticketDatabaseTool;
 
-    @Value("classpath:/prompts/helpdesk-system.st")
+
     private Resource systemPromptResource;
 
     public String getResponseFromAssistant(String query, String conversationId){
